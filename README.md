@@ -78,7 +78,7 @@ Things you may want to cover:
 
 - belongs_to :order
 
-## purchases テーブル
+## orders テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
