@@ -96,25 +96,25 @@ RSpec.describe User, type: :model do
       it 'first_nameが全角文字でないと登録できない' do
         @user.first_name = 'Taro' # 全角でない名前
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name は全角文字で入力してください")
+        expect(@user.errors.full_messages).to include('First name は全角文字で入力してください')
       end
 
       it 'family_nameが全角文字でないと登録できない' do
         @user.family_name = 'Tanaka' # 全角でない名前
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name は全角文字で入力してください")
+        expect(@user.errors.full_messages).to include('Family name は全角文字で入力してください')
       end
 
       it 'read_first_nameがカタカナでないと登録できない' do
         @user.read_first_name = 'たろう' # カタカナでない名前カナ
         @user.valid?
-        expect(@user.errors.full_messages).to include("Read first name はカタカナで入力してください")
+        expect(@user.errors.full_messages).to include('Read first name はカタカナで入力してください')
       end
 
       it 'read_family_nameがカタカナでないと登録できない' do
         @user.read_family_name = 'たなか' # カタカナでない名前カナ
         @user.valid?
-        expect(@user.errors.full_messages).to include("Read family name はカタカナで入力してください")
+        expect(@user.errors.full_messages).to include('Read family name はカタカナで入力してください')
       end
     end
   end
