@@ -4,10 +4,10 @@ FactoryBot.define do
     email                 { Faker::Internet.email }
     password              { Faker::Internet.password(min_length: 6) }
     password_confirmation { password }
-    date_of_birth         { Faker::Date.between(from: 80.years.ago, to: 5.years.ago) }
-    first_name            { Faker::Japanese::Name.first_name }
-    family_name           { Faker::Japanese::Name.last_name }
-    read_first_name       { Faker::Japanese::Name.first_name.yomi }
-    read_family_name      { Faker::Japanese::Name.last_name.yomi }
+    date_of_birth         { Faker::Date.between(from: Date.new(1930, 1, 1), to: Date.new(2018, 12, 31)) }
+    first_name            { '太郎' }
+    family_name           { '田中' }
+    read_first_name       { 'タロウ' }
+    read_family_name      { 'タナカ' }
   end
 end
