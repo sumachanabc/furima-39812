@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :items
   has_many :orders
 
+
+  validates :nickname, presence: true
   # 名前(全角)のバリデーション
   validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: "は全角文字で入力してください" }
   validates :family_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: "は全角文字で入力してください" }
