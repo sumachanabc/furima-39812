@@ -182,7 +182,10 @@
   </div>
   <%# /商品一覧 %>
 </div>
-<%= link_to(new_item_path, class: 'purchase-btn') do %>
+<%= link_to new_item_path, data: { turbo: false },class: 'purchase-btn' do %>
+<!-- rails7だとページ遷移時にJSを読み込まない現象がある。裏で動いているターボリンクスが原因箇所なので-->
+<!-- オフにするためdata: { turbo: false }とすることでブラウザの機能として読み取ることができる-->
+<!--原則アクセスしたいページに行くボタンに記述するだけで足りるが、念のためアクセス先のフォームウィズにも記述している-->
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>

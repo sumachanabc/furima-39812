@@ -1,4 +1,7 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  # module=特定の役割を持つメソッドや定数に名前を付けてまとめたもの
+  # ActiveHashを用いて、belongs_toを設定するには、extend ActiveHash::Associations::ActiveRecordExtensionsと記述してmoduleを取り込む必要がある。
   belongs_to :user
   belongs_to :category
   belongs_to :condition
