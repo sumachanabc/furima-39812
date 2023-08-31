@@ -1,4 +1,3 @@
-# app/models/shipping_detail.rb
 class ShippingDetail < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
