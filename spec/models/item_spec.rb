@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user) # ログイン状態のユーザーを作成
-    @item = FactoryBot.build(:item, user: @user)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品出品機能' do
@@ -13,7 +12,6 @@ RSpec.describe Item, type: :model do
       end
 
       it '出品が完了した場合、トップページに遷移すること' do
-        @item.save
         expect(@item).to be_valid
       end
     end
@@ -125,5 +123,14 @@ RSpec.describe Item, type: :model do
         )
       end
     end
+
+    context 'ユーザー関連' do
+      it 'userが紐付いていないと保存できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
+    end
+
   end
 end
