@@ -18,6 +18,12 @@ class Item < ApplicationRecord
   validates :shipping_detail_id, presence: true
   validates :prefecture_id, presence: true
   validates :shipping_timeframe_id, presence: true
-  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-  validates :image, presence: true
+  validates :price, presence: true, 
+  numericality: { 
+    only_integer: true, 
+    greater_than_or_equal_to: 300, 
+    less_than_or_equal_to: 9_999_999 
+  },
+  format: { with: /\A[0-9]+\z/, message: "は半角数値のみ入力してください" }
+    validates :image, presence: true
 end
