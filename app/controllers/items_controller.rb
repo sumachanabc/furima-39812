@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -13,10 +13,8 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      # 出品が成功した場合
-      redirect_to root_path, notice: '商品を出品しました。'
+      redirect_to root_path
     else
-      # 入力に問題がある場合
       render :new, status: :unprocessable_entity
     end
   end
@@ -26,6 +24,7 @@ class ItemsController < ApplicationController
 
   def edit
     return if @item.user == current_user
+
     redirect_to root_path
   end
 
@@ -34,6 +33,15 @@ class ItemsController < ApplicationController
       redirect_to item_path
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if user_signed_in? && @item.user == current_user
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
