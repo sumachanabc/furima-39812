@@ -10,7 +10,7 @@
 }
 
 .item-box {
-  background-color: #FFF;
+  background-color: #fff;
   width: 70vw;
   min-width: 1200px;
   padding: 10vh 15vw;
@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.item-box>.name {
+.item-box > .name {
   text-align: center;
   font-weight: bold;
   font-size: 25px;
@@ -40,22 +40,21 @@
   flex-direction: column;
 }
 
-.item-price-box>.item-price {
+.item-price-box > .item-price {
   font-size: 4vh;
   font-weight: bold;
 }
 
-.item-price-box>.item-postage {
+.item-price-box > .item-postage {
   font-size: 16px;
 }
-
 
 .item-red-btn {
   text-align: center;
   background-color: #ea352d;
   font-size: 24px;
   font-weight: bold;
-  color: #FFF;
+  color: #fff;
   margin: 20px 0px;
   padding: 2vh 10vw;
 }
@@ -138,7 +137,6 @@
   margin-right: 5px;
 }
 
-
 /* /商品の概要 */
 
 .comment-box {
@@ -165,8 +163,8 @@
 
 .comment-btn {
   line-height: 48px;
-  background-color: #3CCACE;
-  border: 1px solid #3CCACE;
+  background-color: #3ccace;
+  border: 1px solid #3ccace;
   color: #fff;
   width: 50%;
   min-width: 150px;
@@ -188,19 +186,18 @@
   display: flex;
   justify-content: space-between;
   width: 50vw;
-
 }
 
 .change-item-btn {
   font-size: 30px;
   text-decoration: none;
-  color: #3CCACE;
+  color: #3ccace;
 }
 
 .another-item {
   display: block;
   margin: 30px 0px 8px;
-  color: #3CCACE;
+  color: #3ccace;
   text-decoration: none;
   font-weight: bold;
   font-size: 23px;
