@@ -20,5 +20,4 @@ class User < ApplicationRecord
 
   # パスワードの英数字混合チェック
   validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: 'は英字と数字の両方を含む必要があります' }
-
 end

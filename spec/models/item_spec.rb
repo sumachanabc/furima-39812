@@ -20,7 +20,7 @@ RSpec.describe Item, type: :model do
       it '商品画像が添付されていない場合、商品が出品できないこと' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image を添付してください")
+        expect(@item.errors.full_messages).to include('Image を添付してください')
       end
 
       it '商品名が空の場合、商品が出品できないこと' do
@@ -38,31 +38,31 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが未選択の場合、商品が出品できないこと' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
 
       it '商品の状態が未選択の場合、商品が出品できないこと' do
         @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+        expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
 
       it '配送料の負担が未選択の場合、商品が出品できないこと' do
         @item.shipping_detail_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping detail must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping detail must be other than 1')
       end
 
       it '発送元の地域が未選択の場合、商品が出品できないこと' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
       it '発送までの日数が未選択の場合、商品が出品できないこと' do
         @item.shipping_timeframe_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping timeframe must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping timeframe must be other than 1')
       end
 
       it '価格が空の場合、商品が出品できないこと' do
@@ -76,13 +76,13 @@ RSpec.describe Item, type: :model do
       it '価格が300未満の場合、商品が出品できないこと' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
 
       it '価格が10,000,000以上の場合、商品が出品できないこと' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
     end
 
@@ -90,13 +90,13 @@ RSpec.describe Item, type: :model do
       it '価格が半角英字のみの場合、商品が出品できないこと' do
         @item.price = 'abcdef'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it '価格が半角英数字の組み合わせではない場合、商品が出品できないこと' do
         @item.price = '123abc'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
 
@@ -110,7 +110,11 @@ RSpec.describe Item, type: :model do
       it 'エラーハンドリングによって出品ページに戻った場合でも、入力済みの項目（商品画像・販売手数料・販売利益以外）は消えないこと' do
         @item.image = nil
         @item.valid?
-        @item.save rescue nil
+        begin
+          @item.save
+        rescue StandardError
+          nil
+        end
         expect(@item).to have_attributes(
           item_name: @item.item_name,
           description: @item.description,
@@ -131,6 +135,5 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('User must exist')
       end
     end
-
   end
 end
