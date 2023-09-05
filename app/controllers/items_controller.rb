@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return if @item.user == current_user
+    return if @item.user == current_user && !@item.sold? # 売却済みでない場合に編集を許可
 
     redirect_to root_path
   end
@@ -61,4 +61,9 @@ class ItemsController < ApplicationController
 
     redirect_to new_user_session_path
   end
+
+  def item_sold?
+    @item.sold? # @itemが売却済みであるかどうかの判定を行う
+  end
+
 end
