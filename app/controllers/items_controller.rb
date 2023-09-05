@@ -65,5 +65,4 @@ class ItemsController < ApplicationController
   def item_sold?
     @item.sold? # @itemが売却済みであるかどうかの判定を行う
   end
-
 end

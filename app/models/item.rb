@@ -29,5 +29,4 @@ class Item < ApplicationRecord
   def sold?
     order.present? # 注文が存在すれば売却済みと判断
   end
-
 end
