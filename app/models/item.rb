@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_detail, class_name: 'ShippingDetail', foreign_key: 'shipping_detail_id'
   belongs_to :prefecture, class_name: 'Prefecture', foreign_key: 'prefecture_id'
   belongs_to :shipping_timeframe, class_name: 'ShippingTimeframe', foreign_key: 'shipping_timeframe_id'
-  # has_one :order
+  has_one :order
   has_one_attached :image
 
   validates :item_name, presence: true
@@ -25,4 +25,8 @@ class Item < ApplicationRecord
                       less_than_or_equal_to: 9_999_999
                     }
   validates :image, presence: { message: 'を添付してください' }
+
+  def sold?
+    order.present? # 注文が存在すれば売却済みと判断
+  end
 end
