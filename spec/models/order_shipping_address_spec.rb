@@ -36,6 +36,16 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
+      it 'cityが空だと保存できないこと' do
+        @order_shipping_address.city = ''
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("City can't be blank")
+      end
+      it 'street_addressが空だと保存できないこと' do
+        @order_shipping_address.street_address = ''
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Street address can't be blank")
+      end
       it 'prefecture_idを選択していないと保存できないこと' do
         @order_shipping_address.prefecture_id = 1
         @order_shipping_address.valid?

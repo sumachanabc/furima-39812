@@ -3,12 +3,14 @@ class OrdersController < ApplicationController
   before_action :item_tokutei, only: [:index, :create, :pay_item]
 
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"] # 環境変数を使用して秘密鍵を代入。RailsからJavaScriptへ公開鍵を渡す
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_shipping_address = OrderShippingAddress.new
-    # ★Formオブジェクトのインスタンスをform_withのmodelオプションに指定。
-    # index(カリキュラムはnew)アクションで生成するインスタンス変数は、index.html.erb内でも使用可能。
-    # index(カリキュラムはnew)アクションで生成したインスタンスは、form_withのmodelオプションに指定可能。
-    # ⇒Formオブジェクトのインスタンスに紐付いたフォームを作成可能。
+    @item = Item.find(params[:item_id]) # item_tokutei メソッドの代わりに直接 item を取得
+    if user_can_purchase?
+      render :index
+    else
+      redirect_to root_path
+    end
   end
 
   def create

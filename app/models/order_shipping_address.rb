@@ -6,6 +6,8 @@ class OrderShippingAddress
     validates :user_id
     validates :item_id
     validates :token
+    validates :city
+    validates :street_address
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"} # 数字3桁、ハイフン、数字4桁の並びのみ許可する
     validates :phone_number, format: { with: /\A\d+\z/, message: "は半角数字のみ入力してください" }, length: { minimum: 10, maximum: 11, message: "は10桁または11桁で入力してください" }
   end
