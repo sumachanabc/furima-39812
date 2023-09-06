@@ -14,12 +14,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    gon.public_key = ENV['PAYJP_PUBLIC_KEY'] # 環境変数を使用して秘密鍵を代入。RailsからJavaScriptへ公開鍵を渡す
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY'] # 環境変数を使用して公開鍵を代入。RailsからJavaScriptへ公開鍵を渡す
     @order_shipping_address = OrderShippingAddress.new(order_params)
+
     # 条件分岐を追加して、要件に合わせたリダイレクトを行う
     if user_can_purchase? && @order_shipping_address.valid? # valid?メソッドを使用しているのは、OrderShippingAddressクラスがApplicationRecordを継承していないことにより、saveメソッドにはバリデーションを実行する機能がないため
       pay_item
-      @order_shipping_address.save
+      @order_shipping_address.save # saveの定義はモデル
       redirect_to root_path
     else
       gon.public_key = ENV['PAYJP_PUBLIC_KEY']
